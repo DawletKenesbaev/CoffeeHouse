@@ -2,6 +2,7 @@ import styled from "styled-components";
 import logo from '../../assets/images/logo.png';
 import coffeeIcon from '../../assets/images/CoffeeIcon.png'
 
+git 
 function Navbar(params) {
     return (
         <Container>
