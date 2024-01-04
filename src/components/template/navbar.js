@@ -2,8 +2,11 @@ import styled from "styled-components";
 import logo from '../../assets/images/logo.png';
 import coffeeIcon from '../../assets/images/CoffeeIcon.png'
 
+import { useState } from "react";
 
 function Navbar(params) {
+    const [navClick,setNavClick] = useState(false)
+    console.log(navClick);
     return (
         <Container>
              <Nav> 
@@ -11,14 +14,15 @@ function Navbar(params) {
                     <img src={logo} alt="logo"/>
                 </div>
                 <div className="right">
-                    <Menu>
+                    <Menu className={navClick ? 'clicked': ''}>
                         <li><a href="#">Favorite Coffee</a></li>
                         <li><a href="#">About</a></li>
                         <li><a href="#">Mobile app</a></li>
                         <li><a href="#">Contact us</a></li>
+                        <li><a className="menu">Menu<img className="coffeeIcon" src={coffeeIcon}/></a></li>
                     </Menu>
+                    <button onClick={()=>{setNavClick(!navClick)}} className="navIcon"><div>clickicpn</div></button>
                 </div>
-                <a className="menu">Menu<span><img className="coffeeIcon" src={coffeeIcon}/></span></a>
             </Nav>
         </Container>
       
@@ -28,14 +32,24 @@ const Nav = styled.div`
   display:flex;
   justify-content:space-between;
   align-items:center;
-  .menu {
-    text-decoration: none;
-    color: #403F3D;
-    font-weight:600;
+  .rigth {
+    margin:0 auto;
   }
   .coffeeIcon {
     margin-left:6px;
-    display:block;
+    display:inline;
+  }
+  .navIcon {
+    display:none;
+  }
+  @media screen and (max-width: 768px) {
+    .navIcon {
+      display:block;
+    }
+  }
+  .clicked {
+    transform: translateX(0);
+
   }
 `
 const Container = styled.div`
@@ -54,6 +68,18 @@ const Menu = styled.ul`
     text-decoration: none;
     color: #403F3D;
     font-weight:600;
+  }
+  .menu {
+    text-decoration: none;
+    color: #403F3D;
+    font-weight:600;
+  }
+  @media screen and (max-width: 768px) {
+    transform: translateX(140%);
+    transition: transform 0.3s ease;
+    flex-direction:column;  
+    
+
   }
 `
 
